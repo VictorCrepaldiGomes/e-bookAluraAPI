@@ -4,7 +4,7 @@ const path = require('path')
 const caminhoArquivo = path.join(__dirname, 'livros.json');
 
 function getTodosLivros() {
-    return JSON.parse(fs.readFileSync("livros.js"))
+    return JSON.parse(fs.readFileSync("livros.json"))
 
 }
 

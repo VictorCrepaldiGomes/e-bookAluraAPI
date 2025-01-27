@@ -38,9 +38,20 @@ function postLivro(req, res) {
 function patchLivro (req, res)  {
     try {
         const id = req.params.id;
-        const body = req.body;
-        modificaLivro(body, id);
-        res.send("modificado com sucesso");
+
+        if(id && Number(id)) {
+
+            const body = req.body;
+            modificaLivro(body, id);
+            res.send("modificado com sucesso");
+
+        } else {
+
+            res.status(422)
+            res.send("ID inválido")
+
+        }
+        
     } catch (error) {
         res.status(500).send(error.message);
     }
@@ -49,8 +60,17 @@ function patchLivro (req, res)  {
 function deleteLivroController(req, res) {
     try {
         const id = req.params.id
-        deleteLivro(id)
-        res.send("Livro apagado com sucesso")
+
+        if(id && Number(id)) {
+            deleteLivro(id)
+            res.send("Livro apagado com sucesso")
+
+        } else {
+
+            res.status(422)
+            res.send("ID inválido")
+        }
+        
 
     } catch(error) {
         res.status(500).send(error.message)
@@ -63,5 +83,6 @@ module.exports = {
     getLivro,
     postLivro,
     patchLivro,
-    deleteLivro: deleteLivroController
+    deleteLivro: deleteLivroController,
+    deleteLivroController
 };
