@@ -10,8 +10,16 @@ const getLivros = (req, res) => {
 const getLivro = (req, res) => {
     
     const id = req.params.id
-    const livro = getLivrosPorID(id)
-    res.send(livro);
+
+    if (id && Number(id)) {
+        const livro = getLivrosPorID(id)
+        res.send(livro)
+
+    } else {
+        
+        res.status(422)
+        res.send("ID inválido")
+    }
 };
 
 function postLivro(req, res) {
